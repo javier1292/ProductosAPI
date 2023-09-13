@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->longText('descripcion');
             $table->decimal('precio');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

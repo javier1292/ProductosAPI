@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,15 @@ Route::controller(ProductoController::class)->group(function () {
     Route::put('/productos/{producto}', 'update');
     Route::delete('/productos/{producto}', 'destroy');
 });
+
+Route::controller(CategoriaController::class)->group(function () {
+    Route::get('/categorias', 'index');
+    Route::post('/categorias', 'store');
+    Route::delete('/categorias/{categoria}', 'destroy');
+});
+
+
+
 
 Route::fallback(function () {
     return response()->json([

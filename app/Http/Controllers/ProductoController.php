@@ -99,9 +99,10 @@ class ProductoController extends Controller
             $producto->descripcion = $request->descripcion;
             $producto->save();
 
-            foreach ($request->categorias as $categoria) {
-                $producto->categoria()->attach($categoria);
-
+            if ($request->categorias) {
+                foreach ($request->categorias as $categoria) {
+                    $producto->categoria()->attach($categoria);
+                }
             }
 
 
@@ -148,7 +149,7 @@ class ProductoController extends Controller
     {
         try {
             return new ProductosResource($producto);
-        }catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             throw new SomethingWentWrong($th);
         }
     }
@@ -209,12 +210,13 @@ class ProductoController extends Controller
             $producto->descripcion = $request->descripcion;
             $producto->save();
 
-
-            $producto->categoria()->detach();
-            foreach ($request->categorias as $categoria) {
-                $producto->categoria()->attach($categoria);
-
+            if ($request->categorias) {
+                $producto->categoria()->detach();
+                foreach ($request->categorias as $categoria) {
+                    $producto->categoria()->attach($categoria);
+                }
             }
+
 
 
             return new ProductosResource($producto);

@@ -19,7 +19,7 @@ class ProductosResource extends JsonResource
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
             'precio' => $this->precio,
-            'categoria' =>  CategoriasResource::collection($this->categoria),
+            'categorias' =>  CategoriasResource::collection($this->categoria),
             'fecha_creacion' => $this->created_at,
 
         ];
